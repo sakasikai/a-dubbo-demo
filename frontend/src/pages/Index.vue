@@ -8,7 +8,7 @@
     >
       <q-card-section>
         <div class="row items-center no-wrap">
-            <div class="text-h6">举例：消费者消费</div>
+          <div class="text-h6">举例：消费者消费</div>
         </div>
       </q-card-section>
 
@@ -31,32 +31,39 @@
 </template>
 
 <script>
-import UserGetDialog from "components/UserGetDialog";
-import TalkServiceDialog from "components/TalkServiceDialog";
 
 export default {
   name: "PageIndex",
+  data() {
+    return {
+      icon: false,
+    };
+  },
   methods: {
     async openUserGetDialog() {
       let url = "/api/dubbo/user/get";
-      // let res = "tes"
+      let res = await this.$axios.get(url);
 
       this.$q.dialog({
-        component: UserGetDialog,
-        parent: this,
-        url: url,
+        title: "TalkService from provider1",
+        message: res.data,
+        html: true,
+        style: "width: 550px;"
       });
     },
     async openTalkServiceDialog(sid) {
       let url = "/api/dubbo/talk/" + sid + "/get";
-      // let res = "tes"
+      let res = await this.$axios.get(url);
 
       this.$q.dialog({
-        component: TalkServiceDialog,
-        parent: this,
-        url: url
+        title: "TalkService from provider2",
+        message: res.data,
+        html: true,
+        style: "width: 550px;"
       });
     },
+
+    // 原来的 基于组件的 qDialog 的写法，退出动画错误，可能和parent指针有关？？
   },
 };
 </script>
