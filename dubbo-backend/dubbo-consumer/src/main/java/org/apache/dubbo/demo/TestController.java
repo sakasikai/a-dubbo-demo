@@ -43,8 +43,10 @@ public class TestController {
 
         if(choice == 1){
              res = talkService.query("what's the time?");
+        }else if(choice == 2){
+            res = talkService.query("what's your ip?");
         }else {
-             res = talkService.query("your name?");
+             res = talkService.query("query out of range");
         }
 
         return res.toString();

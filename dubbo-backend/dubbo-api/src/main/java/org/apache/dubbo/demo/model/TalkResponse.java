@@ -14,8 +14,8 @@ public class TalkResponse implements Serializable {
     private String providerName;
 
     public TalkResponse(){
-        this.input = "No Input";
-        this.output = "No Response";
+        this.input = "None";
+        this.output = "I have no answer for this query :(";
         this.providerName = "None";
     }
 

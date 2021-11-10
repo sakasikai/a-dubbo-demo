@@ -1,5 +1,6 @@
 package org.apache.dubbo.demo.impl;
 
+import com.alibaba.dubbo.rpc.RpcContext;
 import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.demo.api.TalkService;
 import org.apache.dubbo.demo.model.TalkResponse;
@@ -20,11 +21,17 @@ public class TalkServiceImpl implements TalkService {
     @Override
     public TalkResponse query(String input) {
 
-        if(input.startsWith("what's the time?")){
-            String msg = "current time is: [" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]";
+        if(input.contains("the time")){
+            String msg = "【response】current time is: [" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]";
+            return new TalkResponse(input, msg, name);
+        }else if(input.contains("your ip")){
+            String msg = "【response】my ip is: "+ RpcContext.getContext().getLocalAddress();
             return new TalkResponse(input, msg, name);
         }else{
-            return new TalkResponse();
+            TalkResponse res = new TalkResponse();
+            res.setInput(input);
+            res.setProviderName(name);
+            return res;
         }
 
 

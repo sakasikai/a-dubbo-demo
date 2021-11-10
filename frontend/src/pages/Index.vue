@@ -22,9 +22,10 @@
       <q-separator />
 
       <q-card-actions>
-        <q-btn flat @click="openUserGetDialog()">UserGet</q-btn>
-        <q-btn flat @click="openTalkServiceDialog(1)">TalkService1</q-btn>
-        <q-btn flat @click="openTalkServiceDialog(2)">TalkService2</q-btn>
+        <q-btn flat @click="openUserGetDialog()">user info</q-btn>
+        <q-btn flat @click="openTalkServiceDialog(1)">query time</q-btn>
+        <q-btn flat @click="openTalkServiceDialog(2)">query ip</q-btn>
+        <q-btn flat @click="openTalkServiceDialog(3)">query None</q-btn>
       </q-card-actions>
     </q-card>
   </q-page>
