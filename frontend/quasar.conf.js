@@ -73,10 +73,24 @@ module.exports = function (/* ctx */) {
 
     // Full list of options: https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
-      https: false,
-      port: 8080,
-      open: true // opens browser window automatically
-    },
+			https: false,
+			port: 8081,
+			open: true, // opens browser window automatically
+			proxy: {
+				"/api": {
+					target: "http://localhost:8888",
+					changeOrigin: true,
+					pathRewrite: {
+						"^/api": ""
+					}
+				}
+			},
+			headers: {
+				"Access-Controll-Allow-Origin": "*"
+			},
+			hotOnly: false,
+			disableHostCheck: true
+		},
 
     // https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
@@ -97,7 +111,7 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ["Dialog"]
     },
 
     // animations: 'all', // --- includes all animations
